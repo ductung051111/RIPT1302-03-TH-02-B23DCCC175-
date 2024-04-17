@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máy Tính</title>
+</head>
+<style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 65vh;
+    background-image: url('https://th.bing.com/th/id/OIP.chy2uM0Mx3AMqYQrMAPPJgHaEK?w=303&h=180&c=7&r=0&o=5&pid=1.7');
+    background-size: cover; width: 100%; height: 800px;
+    }
+.maytinh {
+    max-width: 350px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  input, button {
+    margin: 5px;
+    padding: 5px 10px;
+  }
+  
+  button {
+    cursor: pointer;
+    background: #003e34;
+    width: 120px; 
+     height: 40px;
+  }
+  input{
+    width: 200px;
+    height:35px ;
+  }
+
+</style>
+<body>
+<div class="maytinh" >
+    <h1>Caculator</h1>
+    <input type="text" id="inputA" placeholder="Nhap so A">
+    <input type="text" id="inputB" placeholder="Nhap so B">
+    <button onclick="sum()">Tong</button>
+    <button onclick="subtract()">Hieu</button>
+    <button onclick="multiply()">Tich</button>
+    <button onclick="divide()">Thuong</button>
+    <button onclick="reset()">Lam lai</button>
+    <br><br>
+    <p id="result"></p>
+</div>
+<script>
+    function sum() {
+        var a = parseFloat(document.getElementById('inputA').value);
+        var b = parseFloat(document.getElementById('inputB').value);
+        if (isNaN(a)||isNaN(b)){
+            document.getElementById('result').innerText="vui long nhap vao so";
+        }
+        else {
+            document.getElementById('result').innerText="Ket qua :" + (a + b)
+        }
+    }
+    function subtract() {
+        var a = parseFloat(document.getElementById('inputA').value);
+        var b = parseFloat(document.getElementById('inputB').value);
+        if (isNaN(a)||isNaN(b)){
+            document.getElementById('result').innerText="vui long nhap vao so";
+        }
+        else {
+            document.getElementById('result').innerText="Ket qua :" + (a - b)
+        }
+    }
+    function multiply() {
+        var a = parseFloat(document.getElementById('inputA').value);
+        var b = parseFloat(document.getElementById('inputB').value);
+        if (isNaN(a)||isNaN(b)){
+            document.getElementById('result').innerText="vui long nhap vao so";
+        }
+        else {
+            document.getElementById('result').innerText="Ket qua :" + (a * b)
+        }
+    }
+    function divide() {
+        var a = parseFloat(document.getElementById('inputA').value);
+        var b = parseFloat(document.getElementById('inputB').value);
+        if (isNaN(a)||isNaN(b)){
+            document.getElementById('result').innerText="vui long nhap vao so";
+        }
+        else if(b === 0) {
+            document.getElementById('result').innerText="Khong chia duoc cho so 0"
+        }
+        else {
+            document.getElementById('result').innerText="Ket qua :" + (a / b);
+    }
+}   
+    function reset() {
+        document.getElementById('inputA').value= "";
+        document.getElementById('inputB').value= "";
+        document.getElementById('result').innerText ="";
+    
+    }
+</script>   
+</body>
+</html>

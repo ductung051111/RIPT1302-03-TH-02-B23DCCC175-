@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarm Clock</title>
+</head>
+<style>
+    .clock {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  body {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    background: #7fc3ff;
+    background: -webkit-linear-gradient(to right, #00223E, #7fffb9);
+    background: linear-gradient(to right, #003e24, #7fa8ff);
+    }
+  
+  .input-container {
+    margin-bottom: 20px;
+  }
+  
+  input, button {
+    margin: 5px;
+    padding: 5px 10px;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  #timer {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .audio-hidden {
+    display: none;
+  }
+</style>
+<body>
+    <div class="clock">
+        <h1>Alarm Clock</h1>
+        <div class="input-container">
+          <input type="number" id="minutes" placeholder="Minutes">
+          <input type="number" id="seconds" placeholder="Seconds">
+        </div>
+        <div class="button-container">
+          <button onclick="startTimer()">START</button>
+          <button onclick="resetTimer()">RESET</button>
+        </div>
+        <p id="timer"></p>
+      </div>
+      
+      <audio id="alarmSound">
+        <source src="phim-dao-hai-tac-one-piece.mp3" type="audio/mpeg">
+      </audio>
+<script>
+    var timer;
+var alarmSound = document.getElementById('alarmSound');
+
+function startTimer() {
+  var minutes = parseInt(document.getElementById('minutes').value);
+  var seconds = parseInt(document.getElementById('seconds').value);
+
+  if (isNaN(minutes) || isNaN(seconds)) {
+    alert("Please enter valid time.");
+    return;
+  }
+
+  var totalSeconds = minutes * 60 + seconds;
+
+  timer = setInterval(function() {
+    totalSeconds--;
+    var displayMinutes = Math.floor(totalSeconds / 60);
+    var displaySeconds = totalSeconds % 60;
+    
+    document.getElementById('timer').innerText = displayMinutes.toString().padStart(2, '0') + ':' + displaySeconds.toString().padStart(2, '0');
+
+    if (totalSeconds <= 0) {
+      clearInterval(timer);
+      document.getElementById('timer').innerText = "00:00";
+      alarmSound.play();
+    }
+  }, 1000);
+}
+
+function resetTimer() {
+  clearInterval(timer);
+  document.getElementById('timer').innerText = "";
+  document.getElementById('minutes').value = "";
+  document.getElementById('seconds').value = "";
+  alarmSound.pause();
+  alarmSound.currentTime = 0;
+}
+</script>
+</body>
+</html>
